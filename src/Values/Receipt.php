@@ -1,0 +1,127 @@
+<?php
+
+namespace Goldcarrot\Cashiers\Tinkoff\Values;
+
+use Goldcarrot\Cashiers\Tinkoff\Enums\Taxation;
+use Goldcarrot\Cashiers\Tinkoff\Validators\Validator;
+
+class Receipt extends Value
+{
+    /**
+     * Электронная почта покупателя
+     *
+     * Необязательный, если передан параметр Phone
+     *
+     * @var string|null
+     */
+    protected ?string $Email = null;
+
+    /**
+     * Телефон покупателя
+     *
+     * В формате +{Ц}
+     *
+     * Необязательный, если передан параметр Email
+     *
+     * @var string|null
+     */
+    protected ?string $Phone = null;
+
+    /**
+     * Электронная почта продавца
+     *
+     * @var string|null
+     */
+    protected ?string $EmailCompany = null;
+
+    /**
+     * Система налогообложения
+     *
+     * @see \Goldcarrot\Cashiers\Tinkoff\Enums\Taxation
+     *
+     * @var string|null
+     */
+    protected ?string $Taxation = null;
+
+    /**
+     * Массив позиций чека с информацией о товарах.
+     *
+     * @see \Goldcarrot\Cashiers\Tinkoff\Values\Item
+     *
+     * @var array<Item>
+     */
+    protected array $Items;
+
+    /**
+     * Объект с информацией о видах оплаты заказа.
+     *
+     * @see \Goldcarrot\Cashiers\Tinkoff\Values\Payments
+     *
+     * @var Payments|null
+     */
+    protected ?Payments $Payments = null;
+
+    public function __construct(array $Items)
+    {
+        $this->setItems($Items);
+    }
+
+    public static function make(array $Items): Receipt
+    {
+        return new static($Items);
+    }
+
+    public function setEmail(?string $Email): Receipt
+    {
+        if ($Email !== null) {
+            Validator::validateEmail($Email, 'Email has invalid value');
+        }
+
+        $this->Email = $Email;
+        return $this;
+    }
+
+    public function setPhone(?string $Phone): Receipt
+    {
+        if ($Phone !== null) {
+            Validator::validatePhone($Phone, 'Phone has invalid value');
+        }
+
+        $this->Phone = $Phone;
+        return $this;
+    }
+
+    public function setEmailCompany(?string $EmailCompany): Receipt
+    {
+        if ($EmailCompany !== null) {
+            Validator::validateEmail($EmailCompany, 'EmailCompany has invalid value');
+        }
+
+        $this->EmailCompany = $EmailCompany;
+        return $this;
+    }
+
+    public function setTaxation(?string $Taxation): Receipt
+    {
+        if ($Taxation !== null) {
+            Validator::validateEnum(Taxation::class, $Taxation, 'Taxation has invalid value');
+        }
+
+        $this->Taxation = $Taxation;
+        return $this;
+    }
+
+    public function setItems(array $Items): Receipt
+    {
+        Validator::validateInstances($Items, Item::class, 'Items have invalid value');
+
+        $this->Items = $Items;
+        return $this;
+    }
+
+    public function setPayments(?Payments $Payments): Receipt
+    {
+        $this->Payments = $Payments;
+        return $this;
+    }
+}

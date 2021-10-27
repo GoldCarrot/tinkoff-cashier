@@ -1,0 +1,22 @@
+{
+    "name": "goldcarrot/tinkoff-cashier",
+    "description": "Tinkoff merchant API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tyrgola Sergey",
+            "email": "ts@goldcarrot.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.4",
+        "illuminate/support": "^8.68"
+    },
+    "autoload": {
+        "psr-4": {
+            "Goldcarrot\\Cashiers\\Tinkoff\\": "src/"
+        }
+    }
+}
