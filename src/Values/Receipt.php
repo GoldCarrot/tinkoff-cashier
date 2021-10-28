@@ -61,6 +61,7 @@ class Receipt extends Value
      */
     protected ?Payments $Payments = null;
 
+
     public function __construct(array $Items)
     {
         $this->setItems($Items);
@@ -74,7 +75,7 @@ class Receipt extends Value
     public function setEmail(?string $Email): Receipt
     {
         if ($Email !== null) {
-            Validator::validateEmail($Email, 'Email has invalid value');
+            Validator::validateEmail($Email);
         }
 
         $this->Email = $Email;
@@ -84,7 +85,7 @@ class Receipt extends Value
     public function setPhone(?string $Phone): Receipt
     {
         if ($Phone !== null) {
-            Validator::validatePhone($Phone, 'Phone has invalid value');
+            Validator::validatePhone($Phone);
         }
 
         $this->Phone = $Phone;
@@ -94,7 +95,7 @@ class Receipt extends Value
     public function setEmailCompany(?string $EmailCompany): Receipt
     {
         if ($EmailCompany !== null) {
-            Validator::validateEmail($EmailCompany, 'EmailCompany has invalid value');
+            Validator::validateEmail($EmailCompany);
         }
 
         $this->EmailCompany = $EmailCompany;
@@ -104,7 +105,7 @@ class Receipt extends Value
     public function setTaxation(?string $Taxation): Receipt
     {
         if ($Taxation !== null) {
-            Validator::validateEnum(Taxation::class, $Taxation, 'Taxation has invalid value');
+            Validator::validateEnum($Taxation, Taxation::class);
         }
 
         $this->Taxation = $Taxation;
@@ -113,7 +114,7 @@ class Receipt extends Value
 
     public function setItems(array $Items): Receipt
     {
-        Validator::validateInstances($Items, Item::class, 'Items have invalid value');
+        Validator::validateInstances($Items, Item::class);
 
         $this->Items = $Items;
         return $this;

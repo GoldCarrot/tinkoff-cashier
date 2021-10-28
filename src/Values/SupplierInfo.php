@@ -42,7 +42,7 @@ class SupplierInfo
     public function setPhones(?array $Phones): SupplierInfo
     {
         if ($Phones !== null) {
-            Validator::validatePhones($Phones, 'Phones have invalid phone number');
+            Validator::validatePhones($Phones);
         }
 
         $this->Phones = $Phones;

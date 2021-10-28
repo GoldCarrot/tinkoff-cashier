@@ -4,8 +4,49 @@ namespace Goldcarrot\Cashiers\Tinkoff\Exceptions;
 
 class TinkoffRequestException extends TinkoffException
 {
-    public function __construct(string $code, ?string $errorMessage = null, ?string $errorDetails = null)
+    protected string  $errorCode;
+    protected ?string $errorMessage = null;
+    protected ?string $errorDetails = null;
+
+    public function __construct(string $errorCode, ?string $errorMessage = null, ?string $errorDetails = null)
     {
-        parent::__construct("Error $code. $errorMessage $errorDetails", $code);
+        $this->errorCode = $errorCode;
+        $this->errorMessage = $errorMessage;
+        $this->errorDetails = $errorDetails;
+
+        parent::__construct($this->buildExceptionMessage());
+    }
+
+    public function getErrorCode(): string
+    {
+        return $this->errorCode;
+    }
+
+    public function getErrorMessage(): ?string
+    {
+        return $this->errorMessage;
+    }
+
+    public function getErrorDetails(): ?string
+    {
+        return $this->errorDetails;
+    }
+
+    private function buildExceptionMessage(): string
+    {
+        $messageParts = [
+            'Tinkoff API request error.',
+            "Code: $this->errorCode.",
+        ];
+
+        if ($this->errorMessage) {
+            $messageParts[] = "Message: $this->errorMessage";
+        }
+
+        if ($this->errorDetails) {
+            $messageParts[] = "Details: $this->errorDetails";
+        }
+
+        return implode(' ', $messageParts);
     }
 }

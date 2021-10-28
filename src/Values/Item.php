@@ -128,7 +128,7 @@ class Item extends Value
 
     public function setQuantity(int $Quantity): Item
     {
-        Validator::validatePositiveNumber($Quantity, 'Quantity must be grater than 0');
+        Validator::validatePositiveNumber($Quantity);
 
         $this->Quantity = $Quantity;
         return $this;
@@ -136,7 +136,7 @@ class Item extends Value
 
     public function setAmount(int $Amount): Item
     {
-        Validator::validatePositiveNumber($Amount, 'Amount must be grater than 0');
+        Validator::validatePositiveNumber($Amount);
 
         $this->Amount = $Amount;
         return $this;
@@ -144,7 +144,7 @@ class Item extends Value
 
     public function setPrice(int $Price): Item
     {
-        Validator::validatePositiveNumber($Price, 'Price must be grater than 0');
+        Validator::validatePositiveNumber($Price);
 
         $this->Price = $Price;
         return $this;
@@ -153,7 +153,7 @@ class Item extends Value
     public function setPaymentMethod(?string $PaymentMethod): Item
     {
         if ($PaymentMethod !== null) {
-            Validator::validateEnum(PaymentMethod::class, $PaymentMethod, 'PaymentMethod has invalid value');
+            Validator::validateEnum($PaymentMethod, PaymentMethod::class);
         }
 
         $this->PaymentMethod = $PaymentMethod;
@@ -163,7 +163,7 @@ class Item extends Value
     public function setPaymentObject(?string $PaymentObject): Item
     {
         if ($PaymentObject !== null) {
-            Validator::validateEnum(PaymentObject::class, $PaymentObject, 'PaymentObject has invalid value');
+            Validator::validateEnum($PaymentObject, PaymentObject::class);
         }
 
         $this->PaymentObject = $PaymentObject;
@@ -172,7 +172,7 @@ class Item extends Value
 
     public function setTax(string $Tax): Item
     {
-        Validator::validateEnum(Tax::class, $Tax, 'Tax has invalid value');
+        Validator::validateEnum($Tax, Tax::class);
 
         $this->Tax = $Tax;
         return $this;

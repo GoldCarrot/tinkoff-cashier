@@ -2,7 +2,9 @@
 
 namespace Goldcarrot\Cashiers\Tinkoff\Responses;
 
-class InitResponse extends BaseResponse
+use Goldcarrot\Cashiers\Tinkoff\Enums\PaymentStatus;
+
+class ChargeResponse extends BaseResponse
 {
     /**
      * Сумма в копейках
@@ -20,7 +22,7 @@ class InitResponse extends BaseResponse
 
     /**
      * Статус платежа
-     * 
+     *
      * @see PaymentStatus
      *
      * @var string
@@ -28,18 +30,11 @@ class InitResponse extends BaseResponse
     protected string $Status;
 
     /**
-     * Идентификатор платежа в системе банка
+     * Уникальный идентификатор транзакции в системе банка
      *
      * @var string
      */
     protected string $PaymentId;
-
-    /**
-     * Ссылка на платежную форму
-     *
-     * @var string
-     */
-    protected string $PaymentURL;
 
 
     public function getAmount(): int
@@ -60,10 +55,5 @@ class InitResponse extends BaseResponse
     public function getPaymentId(): string
     {
         return $this->PaymentId;
-    }
-
-    public function getPaymentURL(): string
-    {
-        return $this->PaymentURL;
     }
 }

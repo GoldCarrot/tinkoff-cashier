@@ -54,7 +54,7 @@ class Payments
     public function setCash(?int $Cash): Payments
     {
         if ($Cash !== null) {
-            Validator::validatePositiveNumber($Cash, 'Cash must be greater than 0');
+            Validator::validatePositiveNumber($Cash);
         }
 
         $this->Cash = $Cash;
@@ -63,7 +63,7 @@ class Payments
 
     public function setElectronic(int $Electronic): Payments
     {
-        Validator::validatePositiveNumber($Electronic, 'Electronic must be greater than 0');
+        Validator::validatePositiveNumber($Electronic);
 
         $this->Electronic = $Electronic;
         return $this;
@@ -72,7 +72,7 @@ class Payments
     public function setAdvancePayment(?int $AdvancePayment): Payments
     {
         if ($AdvancePayment !== null) {
-            Validator::validatePositiveNumber($AdvancePayment, 'AdvancePayment must be greater than 0');
+            Validator::validatePositiveNumber($AdvancePayment);
         }
 
         $this->AdvancePayment = $AdvancePayment;
@@ -82,7 +82,7 @@ class Payments
     public function setCredit(?int $Credit): Payments
     {
         if ($Credit !== null) {
-            Validator::validatePositiveNumber($Credit, 'Credit must be greater than 0');
+            Validator::validatePositiveNumber($Credit);
         }
 
         $this->Credit = $Credit;
@@ -92,7 +92,7 @@ class Payments
     public function setProvision(?int $Provision): Payments
     {
         if ($Provision !== null) {
-            Validator::validatePositiveNumber($Provision, 'Provision must be greater than 0');
+            Validator::validatePositiveNumber($Provision);
         }
 
         $this->Provision = $Provision;

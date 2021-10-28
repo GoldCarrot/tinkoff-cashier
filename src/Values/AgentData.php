@@ -103,7 +103,7 @@ class AgentData extends Value
     public function setAgentSign(?string $AgentSign): AgentData
     {
         if ($AgentSign) {
-            Validator::validateEnum(AgentSign::class, $AgentSign, 'AgentSign has invalid value');
+            Validator::validateEnum($AgentSign, AgentSign::class);
         }
 
         $this->AgentSign = $AgentSign;
@@ -119,7 +119,7 @@ class AgentData extends Value
     public function setPhones(?array $Phones): AgentData
     {
         if ($Phones !== null) {
-            Validator::validatePhones($Phones, 'Phones have invalid value');
+            Validator::validatePhones($Phones);
         }
 
         $this->Phones = $Phones;
@@ -129,7 +129,7 @@ class AgentData extends Value
     public function setReceiverPhones(?array $ReceiverPhones): AgentData
     {
         if ($ReceiverPhones !== null) {
-            Validator::validatePhones($ReceiverPhones, 'ReceiverPhones have invalid value');
+            Validator::validatePhones($ReceiverPhones);
         }
 
         $this->ReceiverPhones = $ReceiverPhones;
@@ -139,7 +139,7 @@ class AgentData extends Value
     public function setTransferPhones(?array $TransferPhones): AgentData
     {
         if ($TransferPhones !== null) {
-            Validator::validatePhones($TransferPhones, 'TransferPhones have invalid value');
+            Validator::validatePhones($TransferPhones);
         }
 
         $this->TransferPhones = $TransferPhones;

@@ -41,6 +41,16 @@ class Charge extends Value
      */
     protected ?string $IP = null;
 
+    public function __construct(int $PaymentId, int $RebillId)
+    {
+        $this->setPaymentId($PaymentId);
+        $this->setRebillId($RebillId);
+    }
+
+    public static function make(int $PaymentId, int $RebillId): Charge
+    {
+        return new static($PaymentId, $RebillId);
+    }
 
     public function setPaymentId(int $PaymentId): Charge
     {
@@ -63,7 +73,7 @@ class Charge extends Value
     public function setInfoEmail(?string $InfoEmail): Charge
     {
         if ($InfoEmail !== null) {
-            Validator::validateEmail($InfoEmail, 'InfoEmail has invalid value');
+            Validator::validateEmail($InfoEmail);
         }
 
         $this->InfoEmail = $InfoEmail;
@@ -73,7 +83,7 @@ class Charge extends Value
     public function setIP(?string $IP): Charge
     {
         if ($IP !== null) {
-            Validator::validateIp($IP, 'IP has invalid value');
+            Validator::validateIp($IP);
         }
 
         $this->IP = $IP;

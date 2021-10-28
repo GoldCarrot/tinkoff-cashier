@@ -157,7 +157,7 @@ class Init extends Value
     public function setAmount(?int $Amount): Init
     {
         if ($Amount !== null) {
-            Validator::validatePositiveNumber($Amount, 'Amount must be greater than 0');
+            Validator::validatePositiveNumber($Amount);
         }
 
         $this->Amount = $Amount;
@@ -189,7 +189,7 @@ class Init extends Value
     public function setLanguage(?string $Language): Init
     {
         if ($Language !== null) {
-            Validator::validateEnum(Language::class, $Language, 'Language has invalid value');
+            Validator::validateEnum($Language, Language::class);
         }
 
         $this->Language = $Language;
@@ -211,7 +211,7 @@ class Init extends Value
     public function setRedirectDueDate(?string $RedirectDueDate): Init
     {
         if ($RedirectDueDate !== null) {
-            Validator::validateDateFormat($RedirectDueDate, DateTimeInterface::ISO8601, 'RedirectDueDate has invalid value');
+            Validator::validateDateFormat($RedirectDueDate, DateTimeInterface::ISO8601);
         }
 
         $this->RedirectDueDate = $RedirectDueDate;
@@ -221,7 +221,7 @@ class Init extends Value
     public function setNotificationURL(?string $NotificationURL): Init
     {
         if ($NotificationURL !== null) {
-            Validator::validateURL($NotificationURL, 'NotificationURL has invalid value');
+            Validator::validateURL($NotificationURL);
         }
 
         $this->NotificationURL = $NotificationURL;
@@ -231,7 +231,7 @@ class Init extends Value
     public function setSuccessURL(?string $SuccessURL): Init
     {
         if ($SuccessURL !== null) {
-            Validator::validateURL($SuccessURL, 'SuccessURL has invalid value');
+            Validator::validateURL($SuccessURL);
         }
 
         $this->SuccessURL = $SuccessURL;
@@ -241,7 +241,7 @@ class Init extends Value
     public function setFailURL(?string $FailURL): Init
     {
         if ($FailURL !== null) {
-            Validator::validateURL($FailURL, 'FailURL has invalid value');
+            Validator::validateURL($FailURL);
         }
 
         $this->FailURL = $FailURL;
@@ -251,7 +251,7 @@ class Init extends Value
     public function setPayType(?string $PayType): Init
     {
         if ($PayType !== null) {
-            Validator::validateEnum(PayType::class, $PayType, 'PayType has invalid value');
+            Validator::validateEnum($PayType, PayType::class);
         }
 
         $this->PayType = $PayType;
