@@ -18,7 +18,7 @@ class Cancel extends Value
      *
      * @var int|null
      */
-    protected ?int $Amount;
+    protected ?int $Amount = null;
 
     /**
      * IP-адрес покупателя

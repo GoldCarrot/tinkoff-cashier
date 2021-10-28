@@ -18,7 +18,7 @@ class GetState extends Value
      *
      * @var string|null
      */
-    protected ?string $IP;
+    protected ?string $IP = null;
 
     public function __construct(int $PaymentId)
     {

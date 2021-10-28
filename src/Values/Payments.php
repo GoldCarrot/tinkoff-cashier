@@ -11,7 +11,7 @@ class Payments
      *
      * @var int|null
      */
-    protected ?int $Cash;
+    protected ?int $Cash = null;
 
     /**
      * Вид оплаты "Безналичный".
@@ -25,21 +25,21 @@ class Payments
      *
      * @var int|null
      */
-    protected ?int $AdvancePayment;
+    protected ?int $AdvancePayment = null;
 
     /**
      * Вид оплаты "Постоплата (Кредит)"
      *
      * @var int|null
      */
-    protected ?int $Credit;
+    protected ?int $Credit = null;
 
     /**
      * Вид оплаты "Иная форма оплаты".
      *
      * @var int|null
      */
-    protected ?int $Provision;
+    protected ?int $Provision = null;
 
     public function __construct(int $Electronic)
     {
