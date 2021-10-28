@@ -3,6 +3,7 @@
 namespace Goldcarrot\Cashiers\Tinkoff;
 
 use Goldcarrot\Cashiers\Tinkoff\Exceptions\TinkoffRequestException;
+use Goldcarrot\Cashiers\Tinkoff\Helpers\Arr;
 use Goldcarrot\Cashiers\Tinkoff\Responses\AddCustomerResponse;
 use Goldcarrot\Cashiers\Tinkoff\Responses\CancelResponse;
 use Goldcarrot\Cashiers\Tinkoff\Responses\ChargeResponse;
@@ -17,12 +18,12 @@ use Goldcarrot\Cashiers\Tinkoff\Responses\ResendResponse;
 use Goldcarrot\Cashiers\Tinkoff\Responses\SendClosingReceiptResponse;
 use Goldcarrot\Cashiers\Tinkoff\Values\AddCustomer;
 use Goldcarrot\Cashiers\Tinkoff\Values\Cancel;
-use Goldcarrot\Cashiers\Tinkoff\Values\RemoveCard;
 use Goldcarrot\Cashiers\Tinkoff\Values\Charge;
 use Goldcarrot\Cashiers\Tinkoff\Values\Confirm;
 use Goldcarrot\Cashiers\Tinkoff\Values\Customer;
 use Goldcarrot\Cashiers\Tinkoff\Values\GetState;
 use Goldcarrot\Cashiers\Tinkoff\Values\Init;
+use Goldcarrot\Cashiers\Tinkoff\Values\RemoveCard;
 use Goldcarrot\Cashiers\Tinkoff\Values\SendClosingReceipt;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
@@ -264,10 +265,13 @@ class Tinkoff
 
     private function generateToken(array $body): string
     {
-        $body = array_merge($body, [
-            'TerminalKey' => $this->terminalKey,
-            'Password'    => $this->password,
-        ]);
+        $body = Arr::merge(
+            Arr::except($body, ['Shops', 'Receipt', 'DATA']),
+            [
+                'TerminalKey' => $this->terminalKey,
+                'Password'    => $this->password,
+            ]
+        );
 
         ksort($body);
 

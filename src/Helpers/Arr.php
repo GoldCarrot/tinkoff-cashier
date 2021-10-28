@@ -21,4 +21,20 @@ class Arr
 
         return false;
     }
+
+    public static function merge(array  ...$arrays): array
+    {
+        return array_merge(...$arrays);
+    }
+
+    public static function except(array $array, array $keys): array
+    {
+        foreach ($keys as $key) {
+            if (self::has($array, $key)) {
+                unset($array[$key]);
+            }
+        }
+
+        return $array;
+    }
 }
