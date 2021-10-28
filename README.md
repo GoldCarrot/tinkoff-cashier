@@ -46,8 +46,7 @@ redirect($response->getPaymentURL());
 use Goldcarrot\Cashiers\Tinkoff\Values\GetState;
 use Goldcarrot\Cashiers\Tinkoff\Enums\PaymentStatus;
 
-$orderId = 'your-order-id';
-$data = GetState::make($orderId);
+$data = GetState::make($paymentId);
     
 $response = $bankApi->getState($data);
 
