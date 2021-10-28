@@ -3,7 +3,7 @@
 namespace Goldcarrot\Cashiers\Tinkoff\Enums;
 
 
-class PaymentStatus
+class PaymentStatus extends Enum
 {
     /**
      * Создан
